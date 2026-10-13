@@ -70,4 +70,13 @@ int print_weather_data(const char *data) {
         return 0;
     }
 
-    
+    printf("Weather report for today:\n");
+    printf("Description:    %s\n", desc_value->valuestring);
+    printf("Temperature:    %s°C - %s°C\n", min_temp->valuestring, max_temp->valuestring);
+    printf("Wind speed:     %s km/h\n", wind_speed->valuestring);
+    printf("Wind direction: %s\n", wind_dir->valuestring);
+
+    cJSON_Delete(root);
+
+    return 1;
+}
