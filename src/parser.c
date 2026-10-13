@@ -51,4 +51,23 @@ int print_weather_data(const char *data) {
         return 0;
     }
 
+    // block params 3
+    cJSON *desc_array = cJSON_GetObjectItemCaseSensitive(current, "weatherDesc");
+    if (!cJSON_IsArray(desc_array)) {
+        cJSON_Delete(root);
+        return 0;
+    }
 
+    cJSON *desc_item = cJSON_GetArrayItem(desc_array, 0);
+    if (desc_item == NULL) {
+        cJSON_Delete(root);
+        return 0;
+    }
+
+    cJSON *desc_value = cJSON_GetObjectItemCaseSensitive(desc_item, "value");
+    if (!cJSON_IsString(desc_value) || desc_value->valuestring == NULL) {
+        cJSON_Delete(root);
+        return 0;
+    }
+
+    
