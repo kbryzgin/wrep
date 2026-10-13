@@ -4,3 +4,5 @@
 */
 
 #pragma once
+
+int print_weather_data(const char *data);
