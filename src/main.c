@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "network.h"
+#include "parser.h"
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
@@ -14,9 +15,12 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    // check
-    printf("%s\n", json_data);
+    int success = print_weather_data(json_data);
     free(json_data);
+
+    if (!success) {
+        return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
 }
